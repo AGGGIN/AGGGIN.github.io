@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="AG">
+  <meta name="keywords" content="">
+  
+  <title>RESTful API - AG的博客</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"aggin.cn","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Home</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="RESTful API">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-06 14:22" pubdate>
+        2021年9月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">RESTful API</h1>
+            
+            <div class="markdown-body">
+              <p>RESTful只是一种设计的风格，Representational State Transfer（表征状态转移）即REST，其实这并不是什么规范或是协议。太过于生搬硬套纯属是自讨没趣了，就有点像是番茄炒蛋一样，没有一个最标准的做法，只要符合口味的就是好的番茄炒蛋。</p>
+<p>HTTP中四种基本操作分别对应四种操作资源的动作，GET用来获取资源，POST用来新建资源，PUT用来更新资源，DELETE用来删除资源，即对应平时的增删改查(CRUD)操作。</p>
+<h2 id="常见的HTTP状态码"><a href="#常见的HTTP状态码" class="headerlink" title="常见的HTTP状态码"></a>常见的HTTP状态码</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>	<span class="hljs-number">200</span>: <span class="hljs-string">&quot;OK&quot;</span>, <span class="hljs-regexp">//</span> 请求成功<br>	<span class="hljs-number">201</span>: <span class="hljs-string">&quot;Created&quot;</span>, <span class="hljs-regexp">//</span> 已创建<br>	<span class="hljs-number">301</span>: <span class="hljs-string">&quot;Moved Permanently&quot;</span>, <span class="hljs-regexp">//</span> 永久移动，请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替<br>	<span class="hljs-number">302</span>: <span class="hljs-string">&quot;Found&quot;</span>, <span class="hljs-regexp">//</span> 临时移动。与<span class="hljs-number">301</span>类似。但资源只是临时被移动。客户端应继续使用原有URI<br>	<span class="hljs-number">303</span>: <span class="hljs-string">&quot;See Other&quot;</span>, <span class="hljs-regexp">//</span> 查看其它地址。与<span class="hljs-number">301</span>类似。使用GET和POST请求查看<br>	<span class="hljs-number">305</span>: <span class="hljs-string">&quot;Use Proxy&quot;</span>, <span class="hljs-regexp">//</span> 使用代理。所请求的资源必须通过代理访问<br>	<span class="hljs-number">307</span>: <span class="hljs-string">&quot;Temporary Redirect&quot;</span>, <span class="hljs-regexp">//</span> 临时重定向。与<span class="hljs-number">302</span>类似。使用GET请求重定向<br>	<span class="hljs-number">400</span>: <span class="hljs-string">&quot;Bad Request&quot;</span>, <span class="hljs-regexp">//</span> 客户端请求的语法错误，服务器无法理解<br>	<span class="hljs-number">401</span>: <span class="hljs-string">&quot;Unauthorized&quot;</span>, <span class="hljs-regexp">//</span> 请求要求用户的身份认证，比如没有token或者是token解析失败<br>	<span class="hljs-number">403</span>: <span class="hljs-string">&quot;Forbidden&quot;</span>, <span class="hljs-regexp">//</span> 服务器理解请求客户端的请求，但是拒绝执行此请求,通常是有token没有权限，没有权限,<br>	<span class="hljs-number">404</span>: <span class="hljs-string">&quot;Not Found&quot;</span>, <span class="hljs-regexp">//</span> 懂得都懂<br>	<span class="hljs-number">410</span>: <span class="hljs-string">&quot;Gone&quot;</span><br>	<span class="hljs-number">415</span>: <span class="hljs-string">&quot;Unsupported Media Type&quot;</span>, <span class="hljs-regexp">//</span> 服务器无法处理请求附带的媒体格式<br>	<span class="hljs-number">416</span>: <span class="hljs-string">&quot;Requested range not satisfiable&quot;</span>, <span class="hljs-regexp">//</span> 客户端请求的范围无效<br>	<span class="hljs-number">417</span>: <span class="hljs-string">&quot;Expectation Failed&quot;</span>, <span class="hljs-regexp">//</span>服务器无法满足Expect的请求头信息<br>	<span class="hljs-number">500</span>: <span class="hljs-string">&quot;Internal Server Error&quot;</span>, <span class="hljs-regexp">//</span> 服务器内部错误，无法完成请求<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="返回的主体"><a href="#返回的主体" class="headerlink" title="返回的主体"></a>返回的主体</h2><p><code>statusCode</code>为HTTP状态码，<code>error</code>默认为HTTP的英文状态码，400或者500这类通用的状态码最好返回<code>error</code>的详情方便排查。<code>message</code>为直观的中文提示，前端可以直接显示给用户看，也可以根据<code>error</code>对应更友善的提示。</p>
+<h3 id="成功时"><a href="#成功时" class="headerlink" title="成功时"></a>成功时</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs vala"><br><span class="hljs-meta"># 创建成功的时候可以返回记录的部分信息，比如ID。如果返回的内容不是同一类型的，则用data包起来。</span><br>&#123;<br>    <span class="hljs-string">&quot;data&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;token&quot;</span>: <span class="hljs-string">&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI0MDA5MTczLCJleHAiOjE2MjY2MDExNzN9.X6Zvw0lMKIOkYss3qyVjlDUIDgluxIYE8jXtU-lNOmc&quot;</span>,<br>        <span class="hljs-string">&quot;user&quot;</span>: &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;AG&quot;</span>,<br>            <span class="hljs-string">&quot;roles&quot;</span>: [<br>                &#123;<br>                    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>                    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Super Admin&quot;</span>,<br>                    <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;Super Admins can access and manage all features and settings.&quot;</span><br>                &#125;<br>            ]<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-meta"># 返回列表带分页时，返回的是列表的则用results包起来</span><br>&#123;<br>    <span class="hljs-string">&quot;results&quot;</span>: [<br>        &#123;<br>            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;NS&quot;</span>,<br>            <span class="hljs-string">&quot;price&quot;</span>: <span class="hljs-number">100</span>,<br>        &#125;<br>    ],<br>    <span class="hljs-string">&quot;pagination&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;page&quot;</span>: <span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;pageSize&quot;</span>: <span class="hljs-number">10</span>,<br>        <span class="hljs-string">&quot;pageCount&quot;</span>: <span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;total&quot;</span>: <span class="hljs-number">1</span><br>    &#125;<br>&#125;<br><br><span class="hljs-meta"># 单个数据详情</span><br>&#123;<br>    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;NS&quot;</span>,<br>    <span class="hljs-string">&quot;price&quot;</span>: <span class="hljs-number">100</span>,<br>    <span class="hljs-string">&quot;created_by&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;AG&quot;</span>,<br>        <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;123456@gmail.com&quot;</span><br>    &#125;,<br>    <span class="hljs-string">&quot;updated_by&quot;</span>: &#123;<br>        <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">1</span>,<br>        <span class="hljs-string">&quot;username&quot;</span>: <span class="hljs-string">&quot;AG&quot;</span>,<br>        <span class="hljs-string">&quot;email&quot;</span>: <span class="hljs-string">&quot;123456@gmail.com&quot;</span><br>    &#125;,<br>    <span class="hljs-string">&quot;created_at&quot;</span>: <span class="hljs-string">&quot;2021-06-18T16:27:27.756Z&quot;</span>,<br>    <span class="hljs-string">&quot;updated_at&quot;</span>: <span class="hljs-string">&quot;2021-06-18T16:27:27.764Z&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="出错时"><a href="#出错时" class="headerlink" title="出错时"></a>出错时</h3><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta"># 如果是验证出错的时候，错误的详情可以放在data里返回。</span><br>&#123;<br>	<span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">400</span>,<br>	<span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;ValidationError&quot;</span>,<br>	<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;ValidationError&quot;</span>,<br>	<span class="hljs-string">&quot;data&quot;</span>: &#123;<br>		<span class="hljs-string">&quot;password&quot;</span>: [<span class="hljs-string">&quot;password is a required field&quot;</span>]<br>	&#125;<br>&#125;<br><br><span class="hljs-meta"># token是错的或者token没传，收到这个客户端可以跳转到登录页面</span><br>&#123;<br>	<span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">401</span>,<br><br>	<span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;Unauthorized&quot;</span><br>&#125;<br><br><span class="hljs-meta"># 访问被禁止，常见的情况是用户没有这个权限</span><br><br>&#123;<br>	<span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">403</span>,<br><br>	<span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;Forbidden&quot;</span><br>&#125;<br><br><span class="hljs-meta"># 没有找到要更新或者删除的记录</span><br>&#123;<br><br>	<span class="hljs-string">&quot;statusCode&quot;</span>: <span class="hljs-number">404</span>,<br><br>	<span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-string">&quot;Not Found&quot;</span>,<br><br>	<span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;懂的都懂&quot;</span><br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="URL的设计"><a href="#URL的设计" class="headerlink" title="URL的设计"></a>URL的设计</h2><p>RESTful的设计里每个URL都代表着一种资源，所以网址中不能有动词，只能有名词，而且所用的名词往往与数据库的表格名对应，数据库里生成的表格一般都是集合都是复数的（用ODM库创建模型生成的表一般也是复数的），所以API中的名词也应该使用复数，不用那么纠结。</p>
+<p>过滤信息，比如limit、offset、pageIndex、pageSize、sortby、order这些过滤条件以query的形式加在URL后面就可以了。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p><a target="_blank" rel="noopener" href="http://restful.p2hp.com/">RESTful风格</a><br><a target="_blank" rel="noopener" href="https://www.runoob.com/http/http-status-codes.html">HTTP状态码</a><br><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/05/restful_api.html">RESTful API 设计指南</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaolandelong/article/details/80839119">关于RESTful API的一些思考与疑问</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script>
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          Fluid.utils.createCssLink('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqusjs.css');
+          Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/disqusjs@1.3.0/dist/disqus.js', function() {
+            new DisqusJS({
+              shortname: 'aggin-cn',
+              apikey: 'Z5qDhlJwaDosoyb9WUySjh4XPttV5gMaYj0vcbcRFWDI1qfjLpiCfyKOAbuBWvXt'
+            });
+          });
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+          <link rel="stylesheet" href="//at.alicdn.com/t/font_2681891_odz5qfdqbte.css">
+        </div>
+      </div>
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        Copyright© 2021 AG 粤ICP备2021078846号-1
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      $('#local-search-input').on('click', function() {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      });
+      $('#modalSearch').on('shown.bs.modal', function() {
+        $('#local-search-input').focus();
+      });
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
